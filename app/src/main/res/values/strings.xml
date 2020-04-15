@@ -1,3 +1,121 @@
 <resources>
     <string name="app_name">Kinde</string>
+
+    <!--GENERAL-->
+    <string name="or">Or</string>
+    <string name="message">Message</string>
+    <string name="input_count_format">%1$d/%2$d</string>
+
+    <!--MENU-->
+    <string name="menu_report">Report</string>
+
+    <!--BUTTONS-->
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_i_agree">I Agree</string>
+    <string name="btn_reply">Reply</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_report">Report</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_read_next">Read Next</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_delete_my_account">Delete My Account</string>
+
+    <!--FORMS-->
+    <string name="input_email_hint">Email</string>
+    <string name="input_password_hint">Password</string>
+    <string name="input_signature_hint">Signature</string>
+    <string name="input_current_password_hint">Current Password</string>
+    <string name="input_new_password_hint">New Password</string>
+    <string name="input_confirm_password_hint">Confirm Password</string>
+
+    <!--SIGN UP-->
+    <string name="sign_up_title">Sign Up</string>
+    <string name="create_account">Create Account</string>
+
+    <!--LOGIN-->
+    <string name="login_title">Login</string>
+    <string name="welcome_back">Welcome Back</string>
+
+    <!--FORGOT PASSWORD-->
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_description">Please enter your email and we will send you instructions to reset your password</string>
+
+    <!--RULES-->
+    <string name="rules_title">Rules</string>
+    <string name="rules"><b>1. Be respectful.</b> This is not a place for jokes, bullying or spreading hate.\n<b>2. Don’t share identifying details or links.</b> In this app everyone is kept anonymous.\n<b>3. Report toxic messages.</b> The app has a report feature if you encounter any bad messages.\n\nEnter your name if you agree to follow these rules.</string>
+
+    <!--HOME-->
+    <string name="home_title">Home</string>
+
+    <!--INBOX-->
+    <string name="inbox_title">Inbox</string>
+    <string name="now">now</string>
+    <string name="minute_format">%dm</string>
+    <string name="hour_format">%dh</string>
+    <string name="day_format">%dd</string>
+    <string name="week_format">%dw</string>
+
+    <!--PROFILE-->
+    <string name="profile_title">Profile</string>
+    <string name="item_account">Account</string>
+    <string name="item_account_description">Change Password, Logout, Delete Account</string>
+    <string name="item_notifications">Notifications</string>
+    <string name="item_notifications_description">New Replies, Reactions</string>
+    <string name="item_about">About</string>
+    <string name="item_about_description">Kinde v%s</string>
+    <string name="item_share_app">Share App</string>
+
+    <!--REPLY-->
+    <string name="reply_title">Reply</string>
+    <string name="your_reply">Your Reply</string>
+    <string name="reply_hint">Write a kind message here…</string>
+
+    <!--REPORT-->
+    <string name="report_title">Report User</string>
+    <string name="report_message">Are you sure you want to report this user?</string>
+
+    <!--NEW MESSAGE-->
+    <string name="new_message_title">New Message</string>
+    <string name="new_message_hint">What is on your mind?</string>
+
+    <!--READ MESSAGE-->
+    <string name="read_message_title">Message</string>
+    <string name="liked_reply_description">Tell them if you liked their reply</string>
+
+    <!--USER-->
+    <string name="id">ID</string>
+    <string name="email">Email</string>
+    <string name="joined">Joined</string>
+    <string name="messages_written">Messages Written</string>
+    <string name="replies_sent">Replies Sent</string>
+    <string name="reactions_received">Reactions Received</string>
+
+    <!--NOTIFICATIONS-->
+    <string name="notifications_title">Notifications</string>
+    <string name="item_new_replies">New Replies</string>
+    <string name="item_new_replies_description">Receive a notification when someone replies to your message.</string>
+    <string name="item_new_reactions">New Reactions</string>
+    <string name="item_new_reactions_description">Receive a notification when someone reacts to your reply.</string>
+
+    <!--ABOUT-->
+    <string name="about_title">About</string>
+    <string name="app_version_format">v%1$s (%2$s)</string>
+    <string name="developed_by">Developed by\nJose Meneses - 2020</string>
+
+    <!--CHANGE PASSWORD-->
+    <string name="change_password_title">Change Password</string>
+
+    <!--ACCOUNT-->
+    <string name="item_change_password">Change Password</string>
+    <string name="item_logout">Logout</string>
+    <string name="item_delete_account">Delete Account</string>
+
+    <!--DELETE ACCOUNT-->
+    <string name="delete_account_title">Delete Account</string>
+    <string name="delete_account_will">Deleting your account will:</string>
+    <string name="delete_account_actions">• Delete your account from Kinde\n• Erase all messages you have created\n• Delete all replies you have sent</string>
+    <string name="delete_account_email_required">To delete your account, enter your email below:</string>
 </resources>
