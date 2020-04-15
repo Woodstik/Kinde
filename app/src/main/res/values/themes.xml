@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <style name="ColoredTheme" parent="@style/BaseTheme">
+        <item name="android:windowBackground">@drawable/bg_gradient_window</item>
+     </style>
+
+    <style name="AppTheme" parent="@style/BaseTheme">
+    </style>
+</resources>
