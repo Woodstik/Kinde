@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wstik.kinde.presentation.auth.login.LoginActivity">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingTop="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"
+        android:paddingBottom="@dimen/spacing_medium">
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="@dimen/width_logo_auth"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logo" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardForm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageLogo">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/spacing_medium"
+                android:paddingTop="@dimen/spacing_medium"
+                android:paddingEnd="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_medium">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textWelcomeBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_back"
+                    android:textAppearance="@style/Text.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputLayoutEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:hint="@string/input_email_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textWelcomeBack"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputLayoutPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:hint="@string/input_password_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmail"
+                    app:passwordToggleEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/btn_forgot_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textAllCaps="false"
+                    style="@style/Button.Borderless"
+                    app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/btn_login"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonForgotPassword"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textOr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:text="@string/or"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+                    android:layout_marginTop="@dimen/spacing_medium"/>
+                <View
+                    android:id="@+id/dividerLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textOr"
+                    app:layout_constraintTop_toTopOf="@+id/textOr"
+                    app:layout_constraintBottom_toBottomOf="@+id/textOr"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:background="@color/color_divider"/>
+
+                <View
+                    android:id="@+id/dividerRight"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintStart_toEndOf="@+id/textOr"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textOr"
+                    app:layout_constraintBottom_toBottomOf="@+id/textOr"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:background="@color/color_divider"/>
+
+                <ImageButton
+                    android:id="@+id/buttonGoogle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/textOr"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonFacebook"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    app:srcCompat="@drawable/ic_google"
+                    android:background="?selectableItemBackground"/>
+
+                <ImageButton
+                    android:id="@+id/buttonFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/textOr"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="@dimen/spacing_medium"
+                    app:layout_constraintStart_toEndOf="@+id/buttonGoogle"
+                    app:srcCompat="@drawable/ic_facebook"
+                    android:background="?selectableItemBackground"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

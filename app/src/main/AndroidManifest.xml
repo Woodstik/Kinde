@@ -24,6 +24,8 @@
             android:theme="@style/ColoredTheme" />
         <activity android:name=".presentation.auth.signup.SignUpActivity"
             android:theme="@style/ColoredTheme"/>
+        <activity android:name=".presentation.auth.login.LoginActivity"
+            android:theme="@style/ColoredTheme"/>
     </application>
 
 </manifest>
