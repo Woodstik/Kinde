@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1019197177969",
+    "firebase_url": "https://kinde-9868b.firebaseio.com",
+    "project_id": "kinde-9868b",
+    "storage_bucket": "kinde-9868b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019197177969:android:96e5fa05beca18e6335bd0",
+        "android_client_info": {
+          "package_name": "com.wstik.kinde.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019197177969-l8o06tl4bdk55jhabgg9plqfrootcgkp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wstik.kinde.staging",
+            "certificate_hash": "c0369b1c4b86ce11961e9995f06701eda9a531db"
+          }
+        },
+        {
+          "client_id": "1019197177969-a2s40gig32r7b8969kq5bp3k3vonjt9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_5rhwDq6nW4YX-9P8mBxTN0ViQ5p0CqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019197177969-a2s40gig32r7b8969kq5bp3k3vonjt9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.auth.AuthMainActivity"
+        <activity
+            android:name=".presentation.auth.AuthMainActivity"
+            android:theme="@style/ColoredTheme" />
+        <activity android:name=".presentation.auth.signup.SignUpActivity"
             android:theme="@style/ColoredTheme"/>
     </application>
 
