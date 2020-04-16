@@ -31,4 +31,10 @@
     <style name="Text.Title" parent="TextAppearance.AppCompat.Title">
     </style>
 
+    <style name="Text.AppName">
+        <item name="android:textSize">@dimen/text_size_app_name</item>
+        <item name="android:textColor">@color/colorAppName</item>
+        <item name="fontFamily">@font/aclonica</item>
+    </style>
+
 </resources>
