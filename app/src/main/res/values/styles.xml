@@ -33,12 +33,14 @@
 
     <style name="Text.AppName">
         <item name="android:textSize">@dimen/text_size_app_name</item>
-        <item name="android:textColor">@color/colorAppName</item>
+        <item name="android:textColor">@color/color_app_name</item>
         <item name="fontFamily">@font/aclonica</item>
     </style>
 
-    <style name="Button" parent="Widget.AppCompat.Button.Colored"/>
+    <style name="Button" parent="Widget.MaterialComponents.Button">
+    </style>
 
-    <style name="Button.Borderless" parent="Widget.AppCompat.Button.Borderless.Colored"/>
-
+    <style name="Button.Borderless" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/color_accent</item>
+    </style>
 </resources>

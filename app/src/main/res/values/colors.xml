@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#341F2E</color>
-    <color name="colorPrimaryDark">#2F1C29</color>
-    <color name="colorAccent">#F54A6F</color>
+    <color name="color_primary">#341F2E</color>
+    <color name="color_primary_dark">#2F1C29</color>
+    <color name="color_accent">#F54A6F</color>
 
-    <color name="colorBackgroundGradientStart">#5D214D</color>
-    <color name="colorBackgroundGradientEnd">#341F2E</color>
+    <color name="color_background_gradient_start">#5D214D</color>
+    <color name="color_background_gradient_end">#341F2E</color>
 
-    <color name="colorIcon">#000000</color>
-    <color name="colorIconInverse">#FFFFFF</color>
+    <color name="color_icon">#000000</color>
+    <color name="color_icon_inverse">#FFFFFF</color>
 
-    <color name="colorAppName">#FFFFFF</color>
+    <color name="color_app_name">#FFFFFF</color>
+
+    <color name="color_divider">#4D000000</color>
 </resources>
