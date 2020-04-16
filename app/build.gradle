@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 def versionMajor = 0
 def versionMinor = 0
 def versionPatch = 0
@@ -31,7 +33,20 @@ android {
             renameAPK(variant, defaultConfig)
         }
     }
-
+    signingConfigs {
+        staging {
+            keyAlias keystoreProperties['stagingKeyAlias']
+            keyPassword keystoreProperties['stagingKeyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+        prod {
+            keyAlias keystoreProperties['prodKeyAlias']
+            keyPassword keystoreProperties['prodKeyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -42,11 +57,13 @@ android {
     productFlavors {
         staging {
             dimension "server"
+            signingConfig signingConfigs.staging
             applicationIdSuffix ".staging"
             versionNameSuffix "-staging"
         }
         prod {
             dimension "server"
+            signingConfig signingConfigs.prod
             applicationIdSuffix ".prod"
             versionNameSuffix "-prod"
         }
@@ -75,6 +92,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0'
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
+
     //Dependency Injection
     implementation 'org.koin:koin-android:2.0.1'
     implementation 'org.koin:koin-androidx-scope:2.0.1'
@@ -94,6 +115,7 @@ dependencies {
 
     //Testing
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation 'org.mockito:mockito-core:3.1.0'
