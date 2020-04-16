@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".presentation.auth.forgotpassword.ForgotPasswordActivity"></activity>
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:theme="@style/ColoredTheme">
@@ -22,10 +23,12 @@
         <activity
             android:name=".presentation.auth.AuthMainActivity"
             android:theme="@style/ColoredTheme" />
-        <activity android:name=".presentation.auth.signup.SignUpActivity"
-            android:theme="@style/ColoredTheme"/>
-        <activity android:name=".presentation.auth.login.LoginActivity"
-            android:theme="@style/ColoredTheme"/>
+        <activity
+            android:name=".presentation.auth.signup.SignUpActivity"
+            android:theme="@style/ColoredTheme" />
+        <activity
+            android:name=".presentation.auth.login.LoginActivity"
+            android:theme="@style/ColoredTheme" />
     </application>
 
 </manifest>
