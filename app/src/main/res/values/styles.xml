@@ -37,4 +37,8 @@
         <item name="fontFamily">@font/aclonica</item>
     </style>
 
+    <style name="Button" parent="Widget.AppCompat.Button.Colored"/>
+
+    <style name="Button.Borderless" parent="Widget.AppCompat.Button.Borderless.Colored"/>
+
 </resources>
