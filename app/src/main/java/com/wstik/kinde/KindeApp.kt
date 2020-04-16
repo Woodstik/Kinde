@@ -5,7 +5,6 @@ import com.wstik.kinde.di.appModule
 import com.wstik.kinde.di.domainModule
 import com.wstik.kinde.di.repositoryModule
 import com.wstik.kinde.di.viewModelModule
-import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
