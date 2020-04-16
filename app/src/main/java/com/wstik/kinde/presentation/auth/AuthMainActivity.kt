@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wstik.kinde.R
+import com.wstik.kinde.presentation.auth.login.startLogin
 import com.wstik.kinde.presentation.auth.signup.startSignUp
 import kotlinx.android.synthetic.main.activity_auth_main.*
 
@@ -19,6 +20,6 @@ class AuthMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_auth_main)
 
         buttonSignUp.setOnClickListener { startSignUp() }
-        buttonLogin.setOnClickListener {  }
+        buttonLogin.setOnClickListener { startLogin() }
     }
 }
