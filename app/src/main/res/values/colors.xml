@@ -9,4 +9,6 @@
 
     <color name="colorIcon">#000000</color>
     <color name="colorIconInverse">#FFFFFF</color>
+
+    <color name="colorAppName">#FFFFFF</color>
 </resources>
