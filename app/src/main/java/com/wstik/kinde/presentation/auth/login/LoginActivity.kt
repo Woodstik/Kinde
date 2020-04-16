@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.wstik.kinde.R
+import com.wstik.kinde.presentation.auth.forgotpassword.startForgotPassword
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 
@@ -32,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){}
         })
+
+        buttonForgotPassword.setOnClickListener { startForgotPassword() }
 
     }
 
