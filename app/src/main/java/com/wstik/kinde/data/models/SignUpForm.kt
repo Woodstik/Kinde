@@ -11,9 +11,9 @@ data class SignUpForm(
     override fun isValid() = isEmailValid() && isPasswordValid()
 
     override fun firstError(): FormError? {
-        return if (!isEmailValid()) {
+        return if (email.isNotEmpty() && !isEmailValid()) {
             FormError.BAD_EMAIL
-        } else if (!isPasswordValid()) {
+        } else if (password.isNotEmpty() && !isPasswordValid()) {
             FormError.SHORT_PASSWORD
         } else {
             null

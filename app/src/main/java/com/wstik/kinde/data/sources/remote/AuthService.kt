@@ -18,7 +18,7 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
         return Completable.create { emitter ->
             firebaseAuth.createUserWithEmailAndPassword(emailRequest.email, emailRequest.password)
                 .addOnSuccessListener { emitter.onComplete() }
-                .addOnFailureListener { emitter.onError(it) }
+                .addOnFailureListener { emitter.tryOnError(it) }
         }
     }
 
