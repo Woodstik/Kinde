@@ -11,7 +11,6 @@ import io.reactivex.rxkotlin.subscribeBy
 class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
 
     val signUpState = MutableLiveData<LoadState<Unit>>()
-    val formState = MutableLiveData<LoadState<Unit>>()
     private val compositeDisposable = CompositeDisposable()
 
     fun signUpEmail(email: String, password: String) {
