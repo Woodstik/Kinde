@@ -19,6 +19,7 @@ import com.wstik.kinde.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 fun Context.startSignUp() {
     startActivity(Intent(this, SignUpActivity::class.java))
@@ -65,7 +66,10 @@ class SignUpActivity : AppCompatActivity() {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
         when (state) {
             is LoadState.Data -> Toast.makeText(this, "User Created!", Toast.LENGTH_SHORT).show()
-            is LoadState.Error -> Toast.makeText(this, "Sign Up Error!", Toast.LENGTH_SHORT).show()
+            is LoadState.Error -> {
+                Toast.makeText(this, "SignUp Error!", Toast.LENGTH_SHORT).show()
+                Timber.d(state.throwable)
+            }
         }
     }
 

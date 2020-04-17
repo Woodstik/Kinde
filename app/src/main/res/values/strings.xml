@@ -34,6 +34,7 @@
     <!--FORM ERRORS-->
     <string name="error_email_not_valid">Email is not valid</string>
     <string name="error_password_too_short">Password too short. Minimum length is 6</string>
+    <string name="error_password_required">Password required</string>
 
     <!--SIGN UP-->
     <string name="sign_up_title">Sign Up</string>
