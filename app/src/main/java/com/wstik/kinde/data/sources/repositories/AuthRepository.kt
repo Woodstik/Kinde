@@ -1,7 +1,7 @@
 package com.wstik.kinde.data.sources.repositories
 
 import com.wstik.kinde.data.requests.AuthRequest
-import com.wstik.kinde.data.requests.ForgotPasswordRequest
+import com.wstik.kinde.data.requests.ResetPasswordRequest
 import com.wstik.kinde.data.sources.AuthDataSource
 import com.wstik.kinde.data.sources.remote.AuthService
 import io.reactivex.Completable
@@ -16,7 +16,7 @@ class AuthRepository(private val authService: AuthService) : AuthDataSource {
         return authService.signUp(request)
     }
 
-    override fun forgotPassword(request: ForgotPasswordRequest): Completable {
-        return authService.forgotPassword(request)
+    override fun resetPassword(request: ResetPasswordRequest): Completable {
+        return authService.resetPassword(request)
     }
 }

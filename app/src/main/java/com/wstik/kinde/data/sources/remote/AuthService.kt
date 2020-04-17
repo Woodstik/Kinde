@@ -2,12 +2,12 @@ package com.wstik.kinde.data.sources.remote
 
 import com.google.firebase.auth.FirebaseAuth
 import com.wstik.kinde.data.requests.AuthRequest
-import com.wstik.kinde.data.requests.ForgotPasswordRequest
+import com.wstik.kinde.data.requests.ResetPasswordRequest
 import io.reactivex.Completable
 
 class AuthService(private val firebaseAuth: FirebaseAuth) {
 
-    fun forgotPassword(request: ForgotPasswordRequest): Completable {
+    fun resetPassword(request: ResetPasswordRequest): Completable {
         return Completable.create { emitter ->
             firebaseAuth.sendPasswordResetEmail(request.email)
                 .addOnSuccessListener { emitter.onComplete() }
