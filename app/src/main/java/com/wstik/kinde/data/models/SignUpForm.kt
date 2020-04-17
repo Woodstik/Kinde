@@ -4,8 +4,8 @@ import android.util.Patterns
 import com.wstik.kinde.data.enums.FormError
 
 data class SignUpForm(
-    val email: String = "",
-    val password: String = ""
+    val email: String,
+    val password: String
 ) : FormState {
 
     override fun isValid() = isEmailValid() && isPasswordValid()

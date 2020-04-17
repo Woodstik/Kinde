@@ -22,10 +22,6 @@ class ForgotPasswordViewModel(private val resetPasswordUseCase: ResetPasswordUse
         compositeDisposable.clear()
     }
 
-    fun onFormChanged(form: ForgotPasswordForm){
-        formState.value = form
-    }
-
     fun forgotPassword() {
         formState.value?.let {
             if(it.isValid()){
