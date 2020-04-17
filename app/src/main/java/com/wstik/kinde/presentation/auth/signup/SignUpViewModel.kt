@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.wstik.kinde.data.enums.LoadState
 import com.wstik.kinde.data.models.SignUpForm
-import com.wstik.kinde.data.requests.SignUpRequest
+import com.wstik.kinde.data.requests.AuthRequest
 import com.wstik.kinde.domain.SignUpUseCase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -19,17 +19,17 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
     fun signUpEmail() {
         formState.value?.let {
             if(it.isValid()) {
-                signUp(SignUpRequest.Email(it.email, it.password))
+                signUp(AuthRequest.Email(it.email, it.password))
             }
         }
     }
 
     fun signUpGoogle() {
-        signUp(SignUpRequest.Google)
+        signUp(AuthRequest.Google)
     }
 
     fun signUpFacebook() {
-        signUp(SignUpRequest.Facebook)
+        signUp(AuthRequest.Facebook)
     }
 
     override fun onCleared() {
@@ -37,7 +37,7 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
         compositeDisposable.clear()
     }
 
-    private fun signUp(request: SignUpRequest) {
+    private fun signUp(request: AuthRequest) {
         val disposable = signUpUseCase.execute(request)
             .doOnSubscribe { signUpState.value = LoadState.Loading }
             .subscribeBy(
