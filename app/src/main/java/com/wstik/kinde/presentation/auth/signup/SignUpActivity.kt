@@ -3,15 +3,18 @@ package com.wstik.kinde.presentation.auth.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.wstik.kinde.R
+import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
+import com.wstik.kinde.data.models.FormState
+import com.wstik.kinde.data.models.SignUpForm
 import com.wstik.kinde.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.toolbar.view.*
@@ -29,24 +32,59 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         viewModel.signUpState.observe(this, Observer { handleSignUpState(it) })
+        viewModel.formState.observe(this, Observer { handleFormState(it) })
 
         setSupportActionBar(layoutToolbar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setTitle(R.string.sign_up_title)
 
         buttonSignUp.setOnClickListener {
-            viewModel.signUpEmail(inputEmail.text.toString(), inputPassword.text.toString())
+            viewModel.signUpEmail()
             hideKeyboard(it)
         }
         buttonGoogle.setOnClickListener { viewModel.signUpGoogle() }
         buttonFacebook.setOnClickListener { viewModel.signUpFacebook() }
+
+        inputEmail.addTextChangedListener(afterTextChanged = { editable ->
+            viewModel.formState.value =
+                SignUpForm(editable.toString(), inputPassword.text.toString())
+        })
+        inputPassword.addTextChangedListener(afterTextChanged = { editable ->
+            viewModel.formState.value =
+                SignUpForm(inputEmail.text.toString(), editable.toString())
+        })
+        inputPassword.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.signUpEmail()
+            }
+            false
+        }
     }
 
     private fun handleSignUpState(state: LoadState<Unit>?) {
-        progressBar.visibility = if(state is LoadState.Loading) View.VISIBLE else View.GONE
-        when(state){
+        progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
+        when (state) {
             is LoadState.Data -> Toast.makeText(this, "User Created!", Toast.LENGTH_SHORT).show()
             is LoadState.Error -> Toast.makeText(this, "Sign Up Error!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleFormState(state: FormState) {
+        val isValid = state.isValid()
+        buttonSignUp.isEnabled = isValid
+        when (state.firstError()) {
+            FormError.BAD_EMAIL -> {
+                inputLayoutEmail.error = getString(R.string.error_email_not_valid)
+                inputLayoutPassword.error = null
+            }
+            FormError.SHORT_PASSWORD -> {
+                inputLayoutEmail.error = null
+                inputLayoutPassword.error = getString(R.string.error_password_too_short)
+            }
+            else -> {
+                inputLayoutEmail.error = null
+                inputLayoutPassword.error = null
+            }
         }
     }
 
