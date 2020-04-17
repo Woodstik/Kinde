@@ -1,10 +1,7 @@
 package com.wstik.kinde
 
 import android.app.Application
-import com.wstik.kinde.di.appModule
-import com.wstik.kinde.di.domainModule
-import com.wstik.kinde.di.repositoryModule
-import com.wstik.kinde.di.viewModelModule
+import com.wstik.kinde.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -19,7 +16,7 @@ class KindeApp : Application(){
 
         startKoin {
             androidContext(this@KindeApp)
-            modules(listOf(appModule, repositoryModule, domainModule, viewModelModule))
+            modules(listOf(appModule, remoteModule, repositoryModule, domainModule, viewModelModule))
         }
     }
 }

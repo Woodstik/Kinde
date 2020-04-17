@@ -1,8 +1,8 @@
 package com.wstik.kinde.di
 
+import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -14,4 +14,5 @@ val appModule = module {
     single(named(SCHEDULER_IO)) { Schedulers.io() }
     single(named(SCHEDULER_MAIN_THREAD)) { AndroidSchedulers.mainThread() }
     single(named(SCHEDULER_COMPUTATION)) { Schedulers.computation() }
+    single { FirebaseAuth.getInstance() }
 }
