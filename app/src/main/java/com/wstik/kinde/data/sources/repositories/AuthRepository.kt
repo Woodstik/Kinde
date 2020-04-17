@@ -1,17 +1,17 @@
 package com.wstik.kinde.data.sources.repositories
 
-import com.wstik.kinde.data.requests.SignUpRequest
+import com.wstik.kinde.data.requests.AuthRequest
 import com.wstik.kinde.data.sources.AuthDataSource
 import com.wstik.kinde.data.sources.remote.AuthService
 import io.reactivex.Completable
 
 class AuthRepository(private val authService: AuthService) : AuthDataSource {
 
-    override fun login(): Completable {
-        TODO("Not yet implemented")
+    override fun login(request: AuthRequest): Completable {
+        return authService.login(request)
     }
 
-    override fun signUp(request: SignUpRequest): Completable {
+    override fun signUp(request: AuthRequest): Completable {
         return authService.signUp(request)
     }
 
