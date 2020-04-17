@@ -31,6 +31,10 @@
     <string name="input_new_password_hint">New Password</string>
     <string name="input_confirm_password_hint">Confirm Password</string>
 
+    <!--FORM ERRORS-->
+    <string name="error_email_not_valid">Email is not valid</string>
+    <string name="error_password_too_short">Password too short. Minimum length is 6</string>
+
     <!--SIGN UP-->
     <string name="sign_up_title">Sign Up</string>
     <string name="create_account">Create Account</string>
