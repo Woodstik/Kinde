@@ -38,7 +38,7 @@
     </style>
 
     <style name="Button" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/color_accent</item>
+        <item name="backgroundTint">@color/selector_button_color</item>
     </style>
 
     <style name="Button.Borderless" parent="Widget.MaterialComponents.Button.TextButton">
