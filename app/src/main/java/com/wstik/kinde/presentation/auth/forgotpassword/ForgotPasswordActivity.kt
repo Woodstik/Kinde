@@ -75,6 +75,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private fun handleResetPasswordState(state: LoadState<Unit>?) {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
+        enableForm(state !is LoadState.Loading && viewModel.formState.value?.isValid()!!)
         when (state) {
             is LoadState.Data -> Toast.makeText(this, "Email Sent!", Toast.LENGTH_SHORT).show()
             is LoadState.Error -> {
@@ -82,5 +83,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 Timber.d(state.throwable)
             }
         }
+    }
+
+    private fun enableForm(enable: Boolean){
+        inputLayoutEmail.isEnabled = enable
+        buttonSubmit.isEnabled = enable
     }
 }

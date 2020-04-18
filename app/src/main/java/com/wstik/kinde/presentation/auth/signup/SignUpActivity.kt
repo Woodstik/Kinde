@@ -64,6 +64,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun handleSignUpState(state: LoadState<Unit>?) {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
+        enableForm(state !is LoadState.Loading && viewModel.formState.value?.isValid()!!)
         when (state) {
             is LoadState.Data -> Toast.makeText(this, "User Created!", Toast.LENGTH_SHORT).show()
             is LoadState.Error -> {
@@ -100,5 +101,11 @@ class SignUpActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun enableForm(enable: Boolean){
+        inputLayoutEmail.isEnabled = enable
+        inputLayoutPassword.isEnabled = enable
+        buttonSignUp.isEnabled = enable
     }
 }
