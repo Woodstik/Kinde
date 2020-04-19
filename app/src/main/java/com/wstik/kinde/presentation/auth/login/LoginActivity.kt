@@ -10,10 +10,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.wstik.kinde.R
 import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
@@ -21,10 +31,11 @@ import com.wstik.kinde.data.models.FormState
 import com.wstik.kinde.data.models.LoginForm
 import com.wstik.kinde.presentation.auth.forgotpassword.startForgotPassword
 import com.wstik.kinde.utils.hideKeyboard
+import com.wstik.kinde.utils.showErrorDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
+import java.io.IOException
 
 fun Context.startLogin() {
     startActivity(Intent(this, LoginActivity::class.java))
@@ -36,6 +47,8 @@ class LoginActivity : AppCompatActivity() {
 
     private val viewModel: LoginViewModel by viewModel()
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var facebookCallbackManager: CallbackManager
+    private val loginManager = LoginManager.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,10 +64,28 @@ class LoginActivity : AppCompatActivity() {
             viewModel.loginEmail()
             hideKeyboard(it)
         }
+
         buttonGoogle.setOnClickListener {
             startActivityForResult(googleSignInClient.signInIntent,REQUEST_GOOGLE_SIGN_IN)
         }
-        buttonFacebook.setOnClickListener { viewModel.loginFacebook() }
+
+        buttonFacebook.setOnClickListener {
+            loginManager.logIn(this, listOf("email", "public_profile"))
+        }
+        facebookCallbackManager = CallbackManager.Factory.create()
+        loginManager.registerCallback(
+            facebookCallbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    viewModel.loginFacebook(loginResult.accessToken.token)
+                }
+
+                override fun onCancel() {}
+
+                override fun onError(error: FacebookException) {
+                    Toast.makeText(this@LoginActivity, R.string.error_facebook_sign_in, Toast.LENGTH_SHORT).show()
+                }
+            })
 
         inputEmail.addTextChangedListener(afterTextChanged = { editable ->
             viewModel.formState.value =
@@ -85,7 +116,13 @@ class LoginActivity : AppCompatActivity() {
         when (state) {
             is LoadState.Data -> Toast.makeText(this, "Login Success!", Toast.LENGTH_SHORT).show()
             is LoadState.Error -> {
-                Toast.makeText(this, "Login Error!", Toast.LENGTH_SHORT).show()
+                when (state.throwable) {
+                    is IOException, is FirebaseNetworkException -> showErrorDialog(getString(R.string.error_network))
+                    is FirebaseAuthInvalidCredentialsException -> showErrorDialog(getString(R.string.error_invalid_credentials))
+                    is FirebaseAuthUserCollisionException -> showErrorDialog(getString(R.string.error_user_already_exists))
+                    is FirebaseAuthInvalidUserException -> showErrorDialog(getString(R.string.error_bad_user))
+                    else -> showErrorDialog(getString(R.string.error_generic))
+                }
             }
         }
     }
@@ -123,11 +160,12 @@ class LoginActivity : AppCompatActivity() {
         inputLayoutEmail.isEnabled = enable
         inputLayoutPassword.isEnabled = enable
         val form = viewModel.formState.value
-        buttonLogin.isEnabled = enable && (form == null || form.isValid())
+        buttonLogin.isEnabled = enable && form != null && form.isValid()
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_GOOGLE_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {

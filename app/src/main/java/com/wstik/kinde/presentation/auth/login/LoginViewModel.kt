@@ -28,8 +28,8 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel(){
         login(AuthRequest.Google(token))
     }
 
-    fun loginFacebook() {
-        login(AuthRequest.Facebook)
+    fun loginFacebook(token: String) {
+        login(AuthRequest.Facebook(token))
     }
 
     override fun onCleared() {

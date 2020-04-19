@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Kinde</string>
+    <string name="facebook_app_id">231110431483486</string>
+    <string name="fb_login_protocol_scheme">fb231110431483486</string>
 
     <!--GENERAL-->
     <string name="or">Or</string>
@@ -22,6 +24,7 @@
     <string name="btn_read_next">Read Next</string>
     <string name="btn_change">Change</string>
     <string name="btn_delete_my_account">Delete My Account</string>
+    <string name="btn_ok">OK</string>
 
     <!--FORMS-->
     <string name="input_email_hint">Email</string>
@@ -37,7 +40,15 @@
     <string name="error_password_required">Password required</string>
 
     <!--ERRORS-->
-    <string name="error_google_sign_in">There was a problem in Google Sign In</string>
+    <string name="error_google_sign_in">There was a problem in Google authentication</string>
+    <string name="error_facebook_sign_in">There was a problem in Facebook authentication</string>
+    <string name="error_dialog_title">Error</string>
+    <string name="error_network">Please check your internet connection and try again</string>
+    <string name="error_weak_password">Weak password. Password length should be at least 6</string>
+    <string name="error_invalid_credentials">Email or password is incorrect</string>
+    <string name="error_user_already_exists">A user with this email already exists</string>
+    <string name="error_bad_user">User is disabled or does not exist</string>
+    <string name="error_generic">An error occurred. Please try again later</string>
 
     <!--SIGN UP-->
     <string name="sign_up_title">Sign Up</string>

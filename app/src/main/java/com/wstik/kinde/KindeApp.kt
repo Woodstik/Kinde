@@ -1,6 +1,7 @@
 package com.wstik.kinde
 
 import android.app.Application
+import com.facebook.FacebookSdk
 import com.wstik.kinde.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -10,6 +11,7 @@ class KindeApp : Application(){
 
     override fun onCreate() {
         super.onCreate()
+        FacebookSdk.setAutoLogAppEventsEnabled(false);
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

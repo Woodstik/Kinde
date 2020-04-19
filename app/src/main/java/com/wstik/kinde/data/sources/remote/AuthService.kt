@@ -1,5 +1,7 @@
 package com.wstik.kinde.data.sources.remote
 
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.wstik.kinde.data.requests.AuthRequest
@@ -20,7 +22,7 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
         return when (request) {
             is AuthRequest.Email -> signUpEmail(request)
             is AuthRequest.Google -> authGoogle(request)
-            is AuthRequest.Facebook -> signUpFacebook(request)
+            is AuthRequest.Facebook -> authFacebook(request)
         }
     }
 
@@ -28,7 +30,7 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
         return when (request) {
             is AuthRequest.Email -> loginEmail(request)
             is AuthRequest.Google -> authGoogle(request)
-            is AuthRequest.Facebook -> loginFacebook(request)
+            is AuthRequest.Facebook -> authFacebook(request)
         }
     }
 
@@ -41,16 +43,11 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
     }
 
     private fun authGoogle(googleRequest: AuthRequest.Google): Completable {
-        return Completable.create { emitter ->
-            val credential = GoogleAuthProvider.getCredential(googleRequest.token, null)
-            firebaseAuth.signInWithCredential(credential)
-                .addOnSuccessListener { emitter.onComplete() }
-                .addOnFailureListener { emitter.tryOnError(it) }
-        }
+        return authWithCredential(GoogleAuthProvider.getCredential(googleRequest.token, null))
     }
 
-    private fun signUpFacebook(facebookRequest: AuthRequest.Facebook): Completable {
-        return Completable.error(NotImplementedError())
+    private fun authFacebook(facebookRequest: AuthRequest.Facebook): Completable {
+        return authWithCredential(FacebookAuthProvider.getCredential(facebookRequest.token))
     }
 
     private fun loginEmail(emailRequest: AuthRequest.Email): Completable {
@@ -61,7 +58,11 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
         }
     }
 
-    private fun loginFacebook(facebookRequest: AuthRequest.Facebook): Completable {
-        return Completable.error(NotImplementedError())
+    private fun authWithCredential(credential: AuthCredential) : Completable{
+        return Completable.create { emitter ->
+            firebaseAuth.signInWithCredential(credential)
+                .addOnSuccessListener { emitter.onComplete() }
+                .addOnFailureListener { emitter.tryOnError(it) }
+        }
     }
 }

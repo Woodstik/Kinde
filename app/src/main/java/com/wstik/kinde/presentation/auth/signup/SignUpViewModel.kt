@@ -28,8 +28,8 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
         signUp(AuthRequest.Google(token))
     }
 
-    fun signUpFacebook() {
-        signUp(AuthRequest.Facebook)
+    fun signUpFacebook(token: String) {
+        signUp(AuthRequest.Facebook(token))
     }
 
     override fun onCleared() {

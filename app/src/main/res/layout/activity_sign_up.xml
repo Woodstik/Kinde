@@ -155,7 +155,8 @@
                     app:layout_constraintHorizontal_chainStyle="packed"
                     android:layout_marginEnd="@dimen/spacing_medium"
                     app:srcCompat="@drawable/ic_google"
-                    android:background="?selectableItemBackground"/>
+                    android:background="?selectableItemBackground"
+                    style="@style/Button.Icon"/>
 
                 <ImageButton
                     android:id="@+id/buttonFacebook"
@@ -167,7 +168,8 @@
                     android:layout_marginStart="@dimen/spacing_medium"
                     app:layout_constraintStart_toEndOf="@+id/buttonGoogle"
                     app:srcCompat="@drawable/ic_facebook"
-                    android:background="?selectableItemBackground"/>
+                    android:background="?selectableItemBackground"
+                    style="@style/Button.Icon"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 

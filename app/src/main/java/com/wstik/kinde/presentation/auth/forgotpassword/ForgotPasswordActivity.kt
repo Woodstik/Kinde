@@ -10,15 +10,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.wstik.kinde.R
 import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
 import com.wstik.kinde.data.models.ForgotPasswordForm
 import com.wstik.kinde.data.models.FormState
+import com.wstik.kinde.utils.showErrorDialog
 import kotlinx.android.synthetic.main.activity_forgot_password.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
+import java.io.IOException
 
 fun Context.startForgotPassword() {
     startActivity(Intent(this, ForgotPasswordActivity::class.java))
@@ -79,13 +82,16 @@ class ForgotPasswordActivity : AppCompatActivity() {
         when (state) {
             is LoadState.Data -> Toast.makeText(this, "Email Sent!", Toast.LENGTH_SHORT).show()
             is LoadState.Error -> {
-                Toast.makeText(this, "Error sending email!", Toast.LENGTH_SHORT).show()
-                Timber.d(state.throwable)
+                when (state.throwable) {
+                    is IOException, is FirebaseNetworkException -> showErrorDialog(getString(R.string.error_network))
+                    is FirebaseAuthInvalidUserException -> showErrorDialog(getString(R.string.error_bad_user))
+                    else -> showErrorDialog(getString(R.string.error_generic))
+                }
             }
         }
     }
 
-    private fun enableForm(enable: Boolean){
+    private fun enableForm(enable: Boolean) {
         inputLayoutEmail.isEnabled = enable
         buttonSubmit.isEnabled = enable
     }
