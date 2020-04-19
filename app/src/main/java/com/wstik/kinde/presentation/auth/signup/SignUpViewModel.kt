@@ -24,8 +24,8 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
         }
     }
 
-    fun signUpGoogle() {
-        signUp(AuthRequest.Google)
+    fun signUpGoogle(token: String) {
+        signUp(AuthRequest.Google(token))
     }
 
     fun signUpFacebook() {

@@ -24,8 +24,8 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel(){
         }
     }
 
-    fun loginGoogle() {
-        login(AuthRequest.Google)
+    fun loginGoogle(token: String) {
+        login(AuthRequest.Google(token))
     }
 
     fun loginFacebook() {

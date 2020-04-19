@@ -4,7 +4,7 @@ import android.util.Patterns
 import com.wstik.kinde.data.enums.FormError
 
 data class ForgotPasswordForm(
-    val email: String
+    val email: String = ""
 ) : FormState {
 
     override fun isValid(): Boolean {

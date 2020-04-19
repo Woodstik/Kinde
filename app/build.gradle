@@ -48,6 +48,9 @@ android {
         }
     }
     buildTypes {
+        debug{
+            signingConfig null
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -103,6 +106,7 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
     implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
 
     //Dependency Injection
     implementation 'org.koin:koin-android:2.0.1'

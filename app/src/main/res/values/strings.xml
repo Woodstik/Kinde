@@ -36,6 +36,9 @@
     <string name="error_password_too_short">Password too short. Minimum length is 6</string>
     <string name="error_password_required">Password required</string>
 
+    <!--ERRORS-->
+    <string name="error_google_sign_in">There was a problem in Google Sign In</string>
+
     <!--SIGN UP-->
     <string name="sign_up_title">Sign Up</string>
     <string name="create_account">Create Account</string>

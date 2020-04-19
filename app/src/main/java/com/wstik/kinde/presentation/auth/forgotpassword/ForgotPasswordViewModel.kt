@@ -13,7 +13,7 @@ class ForgotPasswordViewModel(private val resetPasswordUseCase: ResetPasswordUse
     ViewModel() {
 
     val resetPasswordState = MutableLiveData<LoadState<Unit>>()
-    val formState = MutableLiveData<ForgotPasswordForm>()
+    val formState = MutableLiveData(ForgotPasswordForm())
 
     private val compositeDisposable = CompositeDisposable()
 

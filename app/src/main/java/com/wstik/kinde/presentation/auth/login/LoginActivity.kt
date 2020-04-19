@@ -10,6 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.wstik.kinde.R
 import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
@@ -26,9 +30,12 @@ fun Context.startLogin() {
     startActivity(Intent(this, LoginActivity::class.java))
 }
 
+private const val REQUEST_GOOGLE_SIGN_IN = 1
+
 class LoginActivity : AppCompatActivity() {
 
     private val viewModel: LoginViewModel by viewModel()
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +51,9 @@ class LoginActivity : AppCompatActivity() {
             viewModel.loginEmail()
             hideKeyboard(it)
         }
-        buttonGoogle.setOnClickListener { viewModel.loginGoogle() }
+        buttonGoogle.setOnClickListener {
+            startActivityForResult(googleSignInClient.signInIntent,REQUEST_GOOGLE_SIGN_IN)
+        }
         buttonFacebook.setOnClickListener { viewModel.loginFacebook() }
 
         inputEmail.addTextChangedListener(afterTextChanged = { editable ->
@@ -63,16 +72,20 @@ class LoginActivity : AppCompatActivity() {
         }
 
         buttonForgotPassword.setOnClickListener { startForgotPassword() }
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
     }
 
     private fun handleLoginState(state: LoadState<Unit>?) {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
-        enableForm(state !is LoadState.Loading && viewModel.formState.value?.isValid()!!)
+        enableForm(state !is LoadState.Loading)
         when (state) {
             is LoadState.Data -> Toast.makeText(this, "Login Success!", Toast.LENGTH_SHORT).show()
             is LoadState.Error -> {
                 Toast.makeText(this, "Login Error!", Toast.LENGTH_SHORT).show()
-                Timber.d(state.throwable)
             }
         }
     }
@@ -109,6 +122,20 @@ class LoginActivity : AppCompatActivity() {
     private fun enableForm(enable: Boolean){
         inputLayoutEmail.isEnabled = enable
         inputLayoutPassword.isEnabled = enable
-        buttonLogin.isEnabled = enable
+        val form = viewModel.formState.value
+        buttonLogin.isEnabled = enable && (form == null || form.isValid())
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_GOOGLE_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                viewModel.loginGoogle(account?.idToken!!)
+            } catch (e: ApiException) {
+                Toast.makeText(this, R.string.error_google_sign_in, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
