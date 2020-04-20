@@ -29,6 +29,7 @@ import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
 import com.wstik.kinde.data.models.FormState
 import com.wstik.kinde.data.models.SignUpForm
+import com.wstik.kinde.presentation.rules.startRules
 import com.wstik.kinde.utils.hideKeyboard
 import com.wstik.kinde.utils.showErrorDialog
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -114,7 +115,7 @@ class SignUpActivity : AppCompatActivity() {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
         enableForm(state !is LoadState.Loading)
         when (state) {
-            is LoadState.Data -> Toast.makeText(this, "User Created!", Toast.LENGTH_SHORT).show()
+            is LoadState.Data -> startRules()
             is LoadState.Error -> {
                 when (state.throwable) {
                     is IOException, is FirebaseNetworkException -> showErrorDialog(getString(R.string.error_network))

@@ -38,6 +38,8 @@
     <string name="error_email_not_valid">Email is not valid</string>
     <string name="error_password_too_short">Password too short. Minimum length is 6</string>
     <string name="error_password_required">Password required</string>
+    <string name="error_signature_required">Signature required</string>
+    <string name="error_signature_length">Signature too long. Max length: %d</string>
 
     <!--ERRORS-->
     <string name="error_google_sign_in">There was a problem in Google authentication</string>

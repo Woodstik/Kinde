@@ -6,16 +6,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.wstik.kinde.data.requests.AuthRequest
 import com.wstik.kinde.data.requests.ResetPasswordRequest
+import com.wstik.kinde.utils.toCompletable
 import io.reactivex.Completable
 
 class AuthService(private val firebaseAuth: FirebaseAuth) {
 
     fun resetPassword(request: ResetPasswordRequest): Completable {
-        return Completable.create { emitter ->
-            firebaseAuth.sendPasswordResetEmail(request.email)
-                .addOnSuccessListener { emitter.onComplete() }
-                .addOnFailureListener { emitter.tryOnError(it) }
-        }
+        return firebaseAuth.sendPasswordResetEmail(request.email).toCompletable()
     }
 
     fun signUp(request: AuthRequest): Completable {
@@ -35,11 +32,10 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
     }
 
     private fun signUpEmail(emailRequest: AuthRequest.Email): Completable {
-        return Completable.create { emitter ->
-            firebaseAuth.createUserWithEmailAndPassword(emailRequest.email, emailRequest.password)
-                .addOnSuccessListener { emitter.onComplete() }
-                .addOnFailureListener { emitter.tryOnError(it) }
-        }
+        return firebaseAuth.createUserWithEmailAndPassword(
+            emailRequest.email,
+            emailRequest.password
+        ).toCompletable()
     }
 
     private fun authGoogle(googleRequest: AuthRequest.Google): Completable {
@@ -51,18 +47,10 @@ class AuthService(private val firebaseAuth: FirebaseAuth) {
     }
 
     private fun loginEmail(emailRequest: AuthRequest.Email): Completable {
-        return Completable.create { emitter ->
-            firebaseAuth.signInWithEmailAndPassword(emailRequest.email, emailRequest.password)
-                .addOnSuccessListener { emitter.onComplete() }
-                .addOnFailureListener { emitter.tryOnError(it) }
-        }
+        return firebaseAuth.signInWithEmailAndPassword(emailRequest.email, emailRequest.password).toCompletable()
     }
 
-    private fun authWithCredential(credential: AuthCredential) : Completable{
-        return Completable.create { emitter ->
-            firebaseAuth.signInWithCredential(credential)
-                .addOnSuccessListener { emitter.onComplete() }
-                .addOnFailureListener { emitter.tryOnError(it) }
-        }
+    private fun authWithCredential(credential: AuthCredential): Completable {
+        return firebaseAuth.signInWithCredential(credential).toCompletable()
     }
 }
