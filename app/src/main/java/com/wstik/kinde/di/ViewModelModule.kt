@@ -19,5 +19,5 @@ val viewModelModule = module {
     viewModel { RulesViewModel(get()) }
     viewModel { HomeViewModel() }
     viewModel { InboxViewModel() }
-    viewModel { ProfileViewModel() }
+    viewModel { ProfileViewModel(get()) }
 }

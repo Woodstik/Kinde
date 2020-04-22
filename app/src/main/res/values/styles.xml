@@ -15,11 +15,10 @@
     <style name="Text.Normal.Inverse" parent="TextAppearance.AppCompat.Small.Inverse">
     </style>
 
-    <style name="Text.Medium" parent="TextAppearance.AppCompat.Medium">
+    <style name="Text.Medium" parent="TextAppearance.AppCompat.Subhead">
     </style>
 
-    <style name="Text.Medium.Inverse" parent="TextAppearance.AppCompat.Medium.Inverse">
-        <item name="android:textColor">?android:textColorPrimaryInverse</item>
+    <style name="Text.Medium.Inverse" parent="TextAppearance.AppCompat.Subhead.Inverse">
     </style>
 
     <style name="Text.Large" parent="TextAppearance.AppCompat.Large">
