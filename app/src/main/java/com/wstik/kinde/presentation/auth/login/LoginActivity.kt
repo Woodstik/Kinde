@@ -23,13 +23,15 @@ import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.wstik.kinde.R
+import com.wstik.kinde.data.enums.AuthState
 import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
 import com.wstik.kinde.data.models.FormState
 import com.wstik.kinde.data.models.LoginForm
 import com.wstik.kinde.presentation.auth.forgotpassword.startForgotPassword
+import com.wstik.kinde.presentation.main.startMain
+import com.wstik.kinde.presentation.rules.startRules
 import com.wstik.kinde.utils.hideKeyboard
 import com.wstik.kinde.utils.showErrorDialog
 import kotlinx.android.synthetic.main.activity_login.*
@@ -66,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         buttonGoogle.setOnClickListener {
-            startActivityForResult(googleSignInClient.signInIntent,REQUEST_GOOGLE_SIGN_IN)
+            startActivityForResult(googleSignInClient.signInIntent, REQUEST_GOOGLE_SIGN_IN)
         }
 
         buttonFacebook.setOnClickListener {
@@ -110,11 +112,14 @@ class LoginActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
     }
 
-    private fun handleLoginState(state: LoadState<Unit>?) {
+    private fun handleLoginState(state: LoadState<AuthState>?) {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
         enableForm(state !is LoadState.Loading)
         when (state) {
-            is LoadState.Data -> Toast.makeText(this, "Login Success!", Toast.LENGTH_SHORT).show()
+            is LoadState.Data -> {
+                if (state.data == AuthState.ACTIVE) startRules()
+                else if (state.data == AuthState.COMPLETE) startMain()
+            }
             is LoadState.Error -> {
                 when (state.throwable) {
                     is IOException, is FirebaseNetworkException -> showErrorDialog(getString(R.string.error_network))
@@ -156,7 +161,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun enableForm(enable: Boolean){
+    private fun enableForm(enable: Boolean) {
         inputLayoutEmail.isEnabled = enable
         inputLayoutPassword.isEnabled = enable
         val form = viewModel.formState.value

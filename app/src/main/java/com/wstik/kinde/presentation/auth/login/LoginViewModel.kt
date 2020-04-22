@@ -2,6 +2,7 @@ package com.wstik.kinde.presentation.auth.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.wstik.kinde.data.enums.AuthState
 import com.wstik.kinde.data.enums.LoadState
 import com.wstik.kinde.data.models.LoginForm
 import com.wstik.kinde.data.requests.AuthRequest
@@ -11,7 +12,7 @@ import io.reactivex.rxkotlin.subscribeBy
 
 class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel(){
 
-    val loginState = MutableLiveData<LoadState<Unit>>()
+    val loginState = MutableLiveData<LoadState<AuthState>>()
     val formState = MutableLiveData<LoginForm>()
 
     private val compositeDisposable = CompositeDisposable()

@@ -8,8 +8,13 @@ import com.wstik.kinde.data.requests.AuthRequest
 import com.wstik.kinde.data.requests.ResetPasswordRequest
 import com.wstik.kinde.utils.toCompletable
 import io.reactivex.Completable
+import io.reactivex.Single
 
 class AuthService(private val firebaseAuth: FirebaseAuth) {
+
+    fun isUserLoggedIn() : Single<Boolean>{
+        return Single.just(firebaseAuth.currentUser != null)
+    }
 
     fun resetPassword(request: ResetPasswordRequest): Completable {
         return firebaseAuth.sendPasswordResetEmail(request.email).toCompletable()

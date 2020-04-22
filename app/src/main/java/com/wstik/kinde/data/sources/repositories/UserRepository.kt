@@ -11,7 +11,7 @@ class UserRepository(private val userService: UserService) : UserDataSource {
         return userService.updateName(name)
     }
 
-    override fun didAcceptRules(): Single<Boolean> {
-        TODO("Not yet implemented")
+    override fun isUserComplete(): Single<Boolean> {
+        return userService.isUseComplete()
     }
 }

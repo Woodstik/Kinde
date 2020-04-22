@@ -7,5 +7,5 @@ interface UserDataSource {
 
     fun updateName(name: String) : Completable
 
-    fun didAcceptRules() : Single<Boolean>
+    fun isUserComplete() : Single<Boolean>
 }

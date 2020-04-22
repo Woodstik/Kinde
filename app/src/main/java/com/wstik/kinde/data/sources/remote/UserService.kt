@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.wstik.kinde.utils.toCompletable
 import io.reactivex.Completable
+import io.reactivex.Single
 
 class UserService(private val firebaseAuth: FirebaseAuth) {
 
@@ -12,5 +13,10 @@ class UserService(private val firebaseAuth: FirebaseAuth) {
             .setDisplayName(name)
             .build()
         return firebaseAuth.currentUser!!.updateProfile(profileChangeRequest).toCompletable()
+    }
+
+    fun isUseComplete() : Single<Boolean> {
+        //TODO: Need to get this value from somewhere
+        return Single.just(true)
     }
 }

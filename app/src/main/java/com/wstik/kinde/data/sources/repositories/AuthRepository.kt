@@ -22,6 +22,6 @@ class AuthRepository(private val authService: AuthService) : AuthDataSource {
     }
 
     override fun isUserLoggedIn(): Single<Boolean> {
-        TODO("Not yet implemented")
+        return authService.isUserLoggedIn()
     }
 }

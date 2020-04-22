@@ -51,6 +51,7 @@
     <string name="error_user_already_exists">A user with this email already exists</string>
     <string name="error_bad_user">User is disabled or does not exist</string>
     <string name="error_generic">An error occurred. Please try again later</string>
+    <string name="error_auth_state">Error loading user session</string>
 
     <!--SIGN UP-->
     <string name="sign_up_title">Sign Up</string>
