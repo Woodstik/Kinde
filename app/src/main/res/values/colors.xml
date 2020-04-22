@@ -13,4 +13,6 @@
     <color name="color_app_name">#FFFFFF</color>
 
     <color name="color_divider">#4D000000</color>
+
+    <color name="color_default_menu_item">#99000000</color>
 </resources>

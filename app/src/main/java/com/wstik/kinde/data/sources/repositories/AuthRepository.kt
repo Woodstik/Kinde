@@ -5,6 +5,7 @@ import com.wstik.kinde.data.requests.ResetPasswordRequest
 import com.wstik.kinde.data.sources.AuthDataSource
 import com.wstik.kinde.data.sources.remote.AuthService
 import io.reactivex.Completable
+import io.reactivex.Single
 
 class AuthRepository(private val authService: AuthService) : AuthDataSource {
 
@@ -18,5 +19,9 @@ class AuthRepository(private val authService: AuthService) : AuthDataSource {
 
     override fun resetPassword(request: ResetPasswordRequest): Completable {
         return authService.resetPassword(request)
+    }
+
+    override fun isUserLoggedIn(): Single<Boolean> {
+        TODO("Not yet implemented")
     }
 }

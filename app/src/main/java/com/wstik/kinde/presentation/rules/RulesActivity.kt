@@ -15,6 +15,7 @@ import com.wstik.kinde.data.enums.FormError
 import com.wstik.kinde.data.enums.LoadState
 import com.wstik.kinde.data.models.FormState
 import com.wstik.kinde.data.models.RulesForm
+import com.wstik.kinde.presentation.main.startMain
 import com.wstik.kinde.utils.showErrorDialog
 import kotlinx.android.synthetic.main.activity_rules.*
 import kotlinx.android.synthetic.main.toolbar.view.*
@@ -51,7 +52,7 @@ class RulesActivity : AppCompatActivity() {
         progressBar.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
         enableForm(state !is LoadState.Loading)
         when (state) {
-            is LoadState.Data -> Toast.makeText(this, "Name updated", Toast.LENGTH_SHORT).show()
+            is LoadState.Data -> startMain()
             is LoadState.Error -> {
                 when (state.throwable) {
                     is IOException, is FirebaseNetworkException -> showErrorDialog(getString(R.string.error_network))
