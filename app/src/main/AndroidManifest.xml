@@ -12,12 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.user.UserActivity"></activity>
-        <activity android:name=".presentation.notifications.NotificationsActivity" />
-        <activity android:name=".presentation.account.AccountActivity" />
-        <activity android:name=".presentation.about.AboutActivity" />
-        <activity android:name=".presentation.main.MainActivity" />
-        <activity android:name=".presentation.rules.RulesActivity" />
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:theme="@style/ColoredTheme">
@@ -37,7 +31,13 @@
             android:name=".presentation.auth.login.LoginActivity"
             android:theme="@style/ColoredTheme" />
         <activity android:name=".presentation.auth.forgotpassword.ForgotPasswordActivity" />
-
+        <activity android:name=".presentation.user.UserActivity" />
+        <activity android:name=".presentation.notifications.NotificationsActivity" />
+        <activity android:name=".presentation.account.AccountActivity" />
+        <activity android:name=".presentation.about.AboutActivity"
+            android:theme="@style/ColoredTheme"/>
+        <activity android:name=".presentation.main.MainActivity" />
+        <activity android:name=".presentation.rules.RulesActivity" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
