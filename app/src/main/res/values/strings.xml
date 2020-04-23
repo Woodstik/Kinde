@@ -7,6 +7,9 @@
     <string name="or">Or</string>
     <string name="message">Message</string>
     <string name="input_count_format">%1$d/%2$d</string>
+    <string name="share_with">Share with</string>
+    <string name="share_app_title">Check out Kinde on the Play Store</string>
+    <string name="share_app_message">Check out Kinde. Share your thoughts and get advice: https://play.google.com/store/apps/details?id=%s</string>
 
     <!--MENU-->
     <string name="menu_report">Report</string>

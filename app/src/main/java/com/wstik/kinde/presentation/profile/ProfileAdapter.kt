@@ -37,22 +37,11 @@ class ProfileAdapter(private val profileListener: ProfileListener) : RecyclerVie
         holder.bindItem(items[position])
     }
 
-    fun showProfile(profileHeader: UserProfile) {
+    fun showProfile(profileHeader: UserProfile, profileOptions: List<ProfileOption>) {
         val newItems = mutableListOf<AdapterItem>()
         newItems.add(ProfileHeaderItem(profileHeader))
 
-        newItems.add(ProfileOptionItem(ProfileOption(R.drawable.ic_account, R.string.item_account, R.string.item_account_description)))
-        newItems.add(
-            ProfileOptionItem(
-                ProfileOption(
-                    R.drawable.ic_notifications,
-                    R.string.item_notifications,
-                    R.string.item_notifications_description
-                )
-            )
-        )
-        newItems.add(ProfileOptionItem(ProfileOption(R.drawable.ic_about, R.string.item_about, R.string.item_about_description)))
-        newItems.add(ProfileOptionItem(ProfileOption(R.drawable.ic_share_app, R.string.item_share_app)))
+        profileOptions.forEach { newItems.add(ProfileOptionItem(it)) }
 
         val diffResult = DiffUtil.calculateDiff(AdapterItemDiffCallback(items, newItems))
         items.clear()
@@ -77,9 +66,9 @@ class ProfileOptionViewHolder(itemView: View, private val profileListener: Profi
         itemView.setOnClickListener { profileListener.onOptionSelected(profileOption) }
         itemView.imageOption.setImageResource(profileOption.icon)
         itemView.textTitle.setText(profileOption.title)
-        if (profileOption.description > 0) {
+        if (profileOption.description.isNotEmpty()) {
             itemView.textDescription.visibility = View.VISIBLE
-            itemView.textDescription.setText(profileOption.description)
+            itemView.textDescription.text = profileOption.description
         } else {
             itemView.textDescription.visibility = View.GONE
         }

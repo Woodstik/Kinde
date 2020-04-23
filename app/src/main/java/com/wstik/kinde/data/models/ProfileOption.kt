@@ -6,5 +6,5 @@ import androidx.annotation.StringRes
 data class ProfileOption (
     @DrawableRes val icon: Int,
     @StringRes val title: Int,
-    @StringRes val description: Int = 0
+    val description: String = ""
 )

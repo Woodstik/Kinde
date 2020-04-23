@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.main.MainActivity"></activity>
+        <activity android:name=".presentation.user.UserActivity"></activity>
+        <activity android:name=".presentation.notifications.NotificationsActivity" />
+        <activity android:name=".presentation.account.AccountActivity" />
+        <activity android:name=".presentation.about.AboutActivity" />
+        <activity android:name=".presentation.main.MainActivity" />
         <activity android:name=".presentation.rules.RulesActivity" />
         <activity
             android:name=".presentation.splash.SplashActivity"
