@@ -10,4 +10,5 @@ interface AuthDataSource {
     fun signUp(request: AuthRequest) : Completable
     fun resetPassword(request: ResetPasswordRequest) : Completable
     fun isUserLoggedIn() : Single<Boolean>
+    fun logout() : Completable
 }

@@ -1,5 +1,6 @@
 package com.wstik.kinde.di
 
+import com.wstik.kinde.presentation.account.AccountViewModel
 import com.wstik.kinde.presentation.auth.forgotpassword.ForgotPasswordViewModel
 import com.wstik.kinde.presentation.auth.login.LoginViewModel
 import com.wstik.kinde.presentation.auth.signup.SignUpViewModel
@@ -20,4 +21,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel() }
     viewModel { InboxViewModel() }
     viewModel { ProfileViewModel(get()) }
+    viewModel { AccountViewModel(get()) }
 }

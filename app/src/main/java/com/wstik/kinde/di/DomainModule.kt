@@ -11,4 +11,5 @@ val domainModule = module {
     factory { AgreeRulesUseCase(get(), get(named(SCHEDULER_IO)), get(named(SCHEDULER_MAIN_THREAD))) }
     factory { GetAuthStateUseCase(get(), get(), get(named(SCHEDULER_IO)), get(named(SCHEDULER_MAIN_THREAD))) }
     factory { GetUserProfileUseCase(get(), get(named(SCHEDULER_IO)), get(named(SCHEDULER_MAIN_THREAD))) }
+    factory { LogoutUseCase(get(), get(named(SCHEDULER_IO)), get(named(SCHEDULER_MAIN_THREAD))) }
 }

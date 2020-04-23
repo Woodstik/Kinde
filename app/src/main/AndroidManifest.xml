@@ -34,10 +34,14 @@
         <activity android:name=".presentation.user.UserActivity" />
         <activity android:name=".presentation.notifications.NotificationsActivity" />
         <activity android:name=".presentation.account.AccountActivity" />
-        <activity android:name=".presentation.about.AboutActivity"
-            android:theme="@style/ColoredTheme"/>
+        <activity
+            android:name=".presentation.about.AboutActivity"
+            android:theme="@style/ColoredTheme" />
         <activity android:name=".presentation.main.MainActivity" />
         <activity android:name=".presentation.rules.RulesActivity" />
+        <activity android:name=".presentation.deleteaccount.DeleteAccountActivity" />
+        <activity android:name=".presentation.auth.changepassword.ChangePasswordActivity" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

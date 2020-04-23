@@ -28,6 +28,7 @@
     <string name="btn_change">Change</string>
     <string name="btn_delete_my_account">Delete My Account</string>
     <string name="btn_ok">OK</string>
+    <string name="btn_logout">Logout</string>
 
     <!--FORMS-->
     <string name="input_email_hint">Email</string>
@@ -56,6 +57,7 @@
     <string name="error_generic">An error occurred. Please try again later</string>
     <string name="error_auth_state">Error loading user session</string>
     <string name="error_load_profile">Error loading user profile</string>
+    <string name="error_logout">Error logging out!</string>
 
     <!--SIGN UP-->
     <string name="sign_up_title">Sign Up</string>
@@ -135,9 +137,12 @@
     <string name="change_password_title">Change Password</string>
 
     <!--ACCOUNT-->
+    <string name="account_title">Account</string>
     <string name="item_change_password">Change Password</string>
     <string name="item_logout">Logout</string>
     <string name="item_delete_account">Delete Account</string>
+    <string name="logout_title">Confirm Logout</string>
+    <string name="logout_message">Are you sure that you want to logout?</string>
 
     <!--DELETE ACCOUNT-->
     <string name="delete_account_title">Delete Account</string>

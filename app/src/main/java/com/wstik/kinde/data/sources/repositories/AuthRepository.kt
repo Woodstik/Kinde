@@ -24,4 +24,8 @@ class AuthRepository(private val authService: AuthService) : AuthDataSource {
     override fun isUserLoggedIn(): Single<Boolean> {
         return authService.isUserLoggedIn()
     }
+
+    override fun logout(): Completable {
+        return authService.logout()
+    }
 }

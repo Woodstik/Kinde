@@ -12,7 +12,11 @@ import io.reactivex.Single
 
 class AuthService(private val firebaseAuth: FirebaseAuth) {
 
-    fun isUserLoggedIn() : Single<Boolean>{
+    fun logout(): Completable {
+        return Completable.fromAction { firebaseAuth.signOut() }
+    }
+
+    fun isUserLoggedIn(): Single<Boolean> {
         return Single.just(firebaseAuth.currentUser != null)
     }
 
